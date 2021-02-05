@@ -1,0 +1,105 @@
+
+
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <div id = 'root'>
+
+        </div>
+        <script src = "C:\Users\Niranjan\jan-2020-mern\reactjs\js\react.development.js"></script>
+
+        <script src = "C:\Users\Niranjan\jan-2020-mern\reactjs\js\react-dom.development.js"></script>
+
+        <script src = "C:\Users\Niranjan\jan-2020-mern\reactjs\js\babel.js"></script>
+
+        <script type ="text/babel"> 
+
+        
+            const rootHandle = document.getElementById('root')
+               class Vowels extends React.Component {
+                 constructor() {
+                   super() 
+                 this.state = {
+                   str: '',
+                     a : 0,
+                     e : 0,
+                     i : 0,
+                     o : 0,
+                     u : 0
+               }
+           }
+
+    handleStrChange = (e) => {
+        const str = e.target.value 
+        this.setState({ 
+            str,
+            
+         })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault() 
+        var vowelObj = { a : 0, e : 0, i :0, o : 0, u : 0}
+        
+        for( let ch of this.state.str ){
+           if(vowelObj.hasOwnProperty(ch)){
+             vowelObj[ch] = vowelObj[ch] + 1
+           }
+
+        }
+
+        this.setState({
+           a : vowelObj.a,
+           e : vowelObj.e,
+           i : vowelObj.i,
+           o : vowelObj.o,
+           u : vowelObj.u
+           })
+
+
+       
+    }
+
+    render() {
+        return (
+            <div>
+                <h1>Vowels</h1> 
+
+                <form onSubmit={this.handleSubmit}>
+                    <label htmlFor="str" > str </label> 
+                    <input type="text" id="str" value={this.state.str} onChange={this.handleStrChange} /> 
+                    <input type="submit" value="count vowels" /> 
+                </form> 
+
+               <table border="1">
+                  <thead>
+                  <tr>
+                     <th>  a     </th>
+                     <th>  e     </th>
+                     <th>  i     </th>
+                     <th>  o     </th>
+                     <th>  u     </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                     <td>{this.state.a}</td>
+                     <td>{this.state.e}</td>
+                     <td>{this.state.i}</td>
+                     <td>{this.state.o}</td>
+                     <td>{this.state.u}</td>
+                  
+                  </tr>
+
+                </tbody>
+
+               
+               </table>
+            </div> 
+        )
+    }
+ }
+
+ReactDOM.render(<Vowels />, rootHandle)
